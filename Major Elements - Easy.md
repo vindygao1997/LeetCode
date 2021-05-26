@@ -115,6 +115,9 @@ public int majorityElement(int[] nums) {
     return ret;
 }
 ```
+### 反思： 
+1. 暴力解法能快速想到，是好事。但是time complexity过高，直接timed out了. 
+2. 不敢用map这种方式，认为array应该保留在一维，是经验不足的体现
 
 
  
