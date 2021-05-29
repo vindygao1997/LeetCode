@@ -52,3 +52,76 @@ class Solution {
 * 暴力解法的优化版，但还是time limit exceeded
 
 ### Solution from discussion board:
+1. Kadane's Algorithm 
+```Java
+public int maxProfit(int[] prices) {
+    int maxCur = 0, maxSoFar = 0;
+    for(int i = 1; i < prices.length; i++) {
+        maxCur = Math.max(0, maxCur += prices[i] - prices[i-1]);
+        maxSoFar = Math.max(maxCur, maxSoFar);
+    }
+    return maxSoFar;
+}
+```
+*maxCur = current maximum value
+
+*maxSoFar = maximum value found so far
+
+##### 解释一下maxCur += prices[i] - prices[i-1]的逻辑：
+```
+A more clear explanation on why sum of subarray works.:
+
+Suppose we have original array:
+[a0, a1, a2, a3, a4, a5, a6]
+
+what we are given here(or we calculate ourselves) is:
+[b0, b1, b2, b3, b4, b5, b6]
+
+where,
+b[i] = 0, when i == 0
+b[i] = a[i] - a[i - 1], when i != 0
+
+suppose if a2 and a6 are the points that give us the max difference (a2 < a6)
+then in our given array, we need to find the sum of sub array from b3 to b6.
+
+b3 = a3 - a2
+b4 = a4 - a3
+b5 = a5 - a4
+b6 = a6 - a5
+
+adding all these, all the middle terms will cancel out except two
+i.e.
+
+b3 + b4 + b5 + b6 = a6 - a2
+
+a6 - a2 is the required solution.
+
+so we need to find the largest sub array sum to get the most profit
+```
+* Time Complexity: O(N)
+* Space Complexity: O(1)
+
+2. Math.max
+```Java
+public int maxProfit(int[] prices) {
+    if (prices.length == 0) {
+        return 0 ;
+    }		
+    int max = 0 ;
+    int sofarMin = prices[0] ;
+    for (int i = 0 ; i < prices.length ; ++i) {
+        if (prices[i] > sofarMin) {
+            max = Math.max(max, prices[i] - sofarMin) ;
+        } else{
+            sofarMin = prices[i];  
+        }
+    }	     
+    return  max ;
+}
+```
+* Time Complexity: O(N)
+* Space Complexity: O(1)
+
+### 反思
+
+1. 不管怎么说
