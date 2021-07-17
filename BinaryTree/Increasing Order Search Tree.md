@@ -38,4 +38,4 @@ class Solution {
 
 1. 首先第一个技巧，把traversal的东西放进list里的方法是在traverse的时候就把list作为其中一个input,然后instead of print, 直接用list.add()将每个element加进去
 2. 第二个技巧 （我并没有懂的地方）：建立一个answer的reference（cur) 来放答案，而不是直接放到ans里
-3. 第三个技巧：直接return `ans.right`。这个我也没懂，为什么就能把一连串都return出来
+3. 第三个技巧：直接return `ans.right`。这个我也没懂，为什么就能把一连串都return出来。但我懂的地方是，这里不return`ans`而是`ans.right`的原因是，第一个treenode的value = 0
