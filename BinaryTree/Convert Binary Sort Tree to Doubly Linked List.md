@@ -118,6 +118,48 @@ public class Solution{
 }
 ```
 
+### Solution:
+
+```Java
+
+class Solution {
+
+    Node first = null;
+    Node last = null;
+    
+    public Node treeToDoublyList(Node root) {
+        if (root == null) {return root;}
+        
+        helper(root);
+        
+        last.right = first;
+        first.left = last;
+        
+        return first;
+    }
+    
+    public void helper(Node node) {
+        if (node != null) {
+        
+            helper(node.left);
+            
+            if (last != null) {
+                last.right = node;
+                node.left = last;
+            } else {
+                first = node;
+            }
+            last = node;
+            
+            helper(node.right);
+        }
+    }
+         
+}
+```
+        
+
+
 ### 反思与改进：
 
 概念不了解：
