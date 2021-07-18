@@ -91,7 +91,49 @@ class Solution {
 2. 用list也比map用的空间少
 3. 耗时减少
 
-### Solution:
+### Solution1:
+
+1. 用stack: 使得栈顶元素是整个BST最小， stack可以控制只出栈顶元素 pop()， 所以不会漏掉元素
+2. set用的比map更灵活
+
+```Java
+
+class Solution {
+    public boolean findTarget(TreeNode root, int k) {
+        //edge case
+        if (root == null) {
+            return false;
+        }
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        Set<Integer> set = new HashSet<>();
+        
+        pushLeft(stack, root);
+        
+        while (! stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            if (set.contains(k - cur.val) {
+                return true;
+            }
+            set.add(cur.val);
+            
+            // IMPORTANT:: need to traverse the right children as well!!!
+            pushLeft(cur.right);
+        }
+        return false;
+    }
+    
+    private void pushLeft(Deque<TreeNode> stack, TreeNode node) {
+        while (node != null) {
+            stack.push(node);
+            // all the way down the left childrens so that we reach the smallest value
+            node = node.left
+        }
+    }
+}
+```
+
+
+### Solution2:
 
 The simplest solution will be to traverse over the whole tree and consider every possible pair of nodes to determine if they can form the required sum kk. But, we can improve the process if we look at a little catch here.
 
@@ -105,7 +147,7 @@ If even after the whole tree's traversal, no such element `p` can be found, the 
 小技巧：
 
 1. 对于每一个已经traverse到的`node.val`，我们有目的地traverse去寻找`k - node.val`
-2. 存进`set`里，比存进`map`好在哪里？
+2. 直接对比，无需将traverse出来的元素再存进另一个地方
 3. 同时traverse left child 和 right child：用||
 
 
