@@ -83,7 +83,8 @@ class Solution {
 	then return his index.
 4. if not found, return -1
 ```
-
+重点：！！！！`arr[i] = number of persons trusts him - number of 
+   persons he trusts`
 
 ```Java
 class Solution {
