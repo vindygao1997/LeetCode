@@ -101,5 +101,7 @@ class Solution {
 }
 ```
 
+### 学会的技巧：
+1. 反向增加：如果`count`是判断标准，则element作出不符合标准的行为时就将`count` - 1
 
 
